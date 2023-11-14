@@ -1,8 +1,7 @@
-from errno import EIDRM
 import requests
 import json
 
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = "http://flask-server:5000"
 current_user=0
 admin_token="invalid"
 
@@ -13,14 +12,14 @@ def register_user():
     data = {"address": address}
     response = requests.post(url, json=data)
     current_user = (response.json())["user_id"]
-    print(response.json())
+    print(response.json())  
 
 def list_menu():
     url = f"{BASE_URL}/menu"
     response = requests.get(url)
     data=response.json()
     print("======================")
-    print("   Tastiest Menu:")
+    print("Tastiest Menu:")
     print("======================")
     for entry in data:
         eid = entry["id"]

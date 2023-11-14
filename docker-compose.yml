@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  flask-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=pizza.py
+      - FLASK_ENV=development
+
+  cli-client:
+    build:
+      context: .
+      dockerfile: Dockerfile-cli
+    stdin_open: true
+    tty: true 
+    depends_on:
+      - flask-server
